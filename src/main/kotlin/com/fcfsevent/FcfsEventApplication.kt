@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class FcfsEventApplication
 
 fun main(args: Array<String>) {
-	runApplication<FcfsEventApplication>(*args)
+    runApplication<FcfsEventApplication>(*args)
 }
