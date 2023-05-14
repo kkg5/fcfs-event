@@ -34,7 +34,7 @@ jobs:
         arguments: build
 
     - name: Make zip file
-      run: zip -r ./deploy.zip ./build/libs/fcfs-event-0.0.1.jar ./appspec.yml
+      run: zip -r ./deploy.zip ./build/libs/fcfs-event-0.0.1.jar ./appspec.yml ./scripts/*
       shell: bash
 
     - name: Configure AWS credentials
