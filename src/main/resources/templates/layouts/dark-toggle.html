@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="darkToggleFrag">
+  <button class="btn btn-outline-secondary position-fixed bottom-0 end-0 mb-3 me-3" onclick="switchMode()">
+    <i class="bi bi-moon-fill"></i>
+  </button>
+  <script>
+    /**
+     * 다크/라이트 모드 전환
+     */
+    function switchMode() {
+      if (document.documentElement.getAttribute('data-bs-theme') === 'dark') {
+        document.documentElement.setAttribute('data-bs-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      }
+    }
+  </script>
+</th:block>
+</html>
