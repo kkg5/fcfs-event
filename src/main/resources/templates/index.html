@@ -17,15 +17,15 @@
     </div>
     <footer class="mt-auto"></footer>
   </div>
+  <script th:src="@{/js/fetch.js}"></script>
   <script>
     /**
      * 순위 조회
      */
     function getRank() {
-      fetch('http://localhost:8080/rest/ranks')
-          .then((response) => response.json())
-          .then((json) =>
-            document.getElementById('heading1').innerText = json['rank']);
+      fetchJson('/rest/ranks')
+          .then((response) =>
+            document.getElementById('heading1').innerText = response['rank']);
     }
   </script>
 </th:block>
