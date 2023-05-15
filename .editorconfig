@@ -26,6 +26,9 @@ ktlint_experimental = enabled
 # Don't allow any wildcard imports
 ij_kotlin_packages_to_use_import_on_demand = unset
 
+ij_kotlin_allow_trailing_comma = false
+ij_kotlin_allow_trailing_comma_on_call_site = false
+
 [*.md]
 trim_trailing_whitespace = false
 
