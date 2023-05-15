@@ -10,11 +10,24 @@
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
     <header class="mt-auto"></header>
     <div>
-      <h1 class="m-5">Hello</h1>
-      <button type="button" class="btn btn-secondary btn-lg px-lg-5 justify-content-center">클릭</button>
+      <h1 id="heading1" class="m-5">Hello</h1>
+      <button type="button"
+              class="btn btn-outline-secondary btn-lg px-lg-5"
+              onclick="getRank()">클릭</button>
     </div>
     <footer class="mt-auto"></footer>
   </div>
+  <script>
+    /**
+     * 순위 조회
+     */
+    function getRank() {
+      fetch('http://localhost:8080/rest/ranks')
+          .then((response) => response.json())
+          .then((json) =>
+            document.getElementById('heading1').innerText = json['rank']);
+    }
+  </script>
 </th:block>
 
 </html>
