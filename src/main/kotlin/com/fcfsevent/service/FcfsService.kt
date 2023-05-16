@@ -12,7 +12,7 @@ class FcfsService {
         val ip = getIp()
         var rank = 0
 
-        if (!map.values.contains(ip)) {
+        if (ip != null && !map.values.contains(ip)) {
             rank = atomicInteger.addAndGet(1)
             map[rank] = ip
         }
