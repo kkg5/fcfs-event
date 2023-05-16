@@ -15,6 +15,7 @@
               class="btn btn-outline-secondary btn-lg px-lg-5"
               onclick="getRank()">클릭</button>
     </div>
+    <th:block th:replace="~{layouts/ranking :: rankingFrag}"></th:block>
     <footer class="mt-auto"></footer>
   </div>
   <script th:src="@{/js/fetch.js}"></script>
@@ -24,8 +25,10 @@
      */
     function getRank() {
       fetchJson('/rest/ranks')
-          .then((response) =>
-            document.getElementById('heading1').innerText = response['rank']);
+          .then((response) => {
+            document.getElementById('heading1').innerText = response['rank'];
+            addRanking(response['map']);
+          });
     }
   </script>
 </th:block>

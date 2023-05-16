@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component
 
 @Component
 class RankScheduler {
-
     @Scheduled(cron = "0 * * * * *")
     fun resetRank() {
         Singleton.atomicInteger.set(0)
+        Singleton.map.clear()
     }
 }

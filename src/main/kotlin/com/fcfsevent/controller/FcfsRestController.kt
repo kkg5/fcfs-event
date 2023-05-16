@@ -13,6 +13,6 @@ class FcfsRestController(
 ) {
     @GetMapping("/ranks")
     fun getRank(): ResultDto {
-        return ResultDto(fcfsService.getRank())
+        return fcfsService.getRank()
     }
 }
