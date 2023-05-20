@@ -23,7 +23,6 @@ class JdkHttpUtils : HttpUtils {
             .header(CONTENT_TYPE, APPLICATION_JSON_VALUE)
             .build()
 
-        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
-        println(response.body())
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
     }
 }
