@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="rankingFrag">
-  <div id="ranking" class="position-fixed bottom-50 end-0 me-3
+  <div id="ranking" class="position-absolute top-50 end-0 translate-middle-y me-3
                            rounded bg-body-secondary w-25 h-25 overflow-auto">
     <h3 class="mt-1">랭킹</h3>
-    <div class="fs-6 m-1">1분 마다 초기화</div>
+    <div class="fs-6 m-1" style="word-break: keep-all">1분 마다 초기화</div>
   </div>
   <script>
     /**
