@@ -20,7 +20,7 @@ class FcfsService(
             rank = map[ip]!!
         }
 
-        return ResultDto(rank, map.map { it.key.substring(0, 7) to it.value }.toMap())
+        return ResultDto(rank, getResultMap())
     }
 
     fun postRank(): ResultDto {
@@ -37,9 +37,11 @@ class FcfsService(
             )
         }
 
-        return ResultDto(
-            map[ip] ?: rank,
-            map.map { it.key.substring(0, 7) to it.value }.toMap()
-        )
+        return ResultDto(map[ip] ?: rank, getResultMap())
+    }
+
+    private fun getResultMap(): Map<Int, String> {
+        return map.map { it.value to it.key.substring(0, 7) }
+            .toMap().toSortedMap()
     }
 }
