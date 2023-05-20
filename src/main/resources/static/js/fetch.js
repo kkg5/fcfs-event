@@ -7,9 +7,14 @@ if (location.hostname === 'localhost') {
 /**
  * Get Json Response
  * @param {string} url
+ * @param {string} method
  * @return {Promise<any>}
  */
-function fetchJson(url) {
-  return fetch(HOST + url)
-      .then((response) => response.json());
+function fetchJson(url, method = 'get') {
+  return fetch(
+      HOST + url,
+      {
+        method: method,
+      },
+  ).then((response) => response.json());
 }

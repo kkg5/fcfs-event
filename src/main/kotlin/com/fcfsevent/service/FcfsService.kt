@@ -12,11 +12,25 @@ class FcfsService {
         val ip = getIp()
         var rank = 0
 
-        if (ip != null && !map.values.contains(ip)) {
-            rank = atomicInteger.addAndGet(1)
-            map[rank] = ip
+        if (ip != null && map.contains(ip)) {
+            rank = map[ip]!!
         }
 
-        return ResultDto(rank, map.map { it.key to it.value?.substring(0, 7) }.toMap())
+        return ResultDto(rank, map.map { it.key.substring(0, 7) to it.value }.toMap())
+    }
+
+    fun postRank(): ResultDto {
+        val ip = getIp()
+        var rank = 0
+
+        if (ip != null && !map.containsKey(ip)) {
+            rank = atomicInteger.addAndGet(1)
+            map[ip] = rank
+        }
+
+        return ResultDto(
+            map[ip] ?: rank,
+            map.map { it.key.substring(0, 7) to it.value }.toMap()
+        )
     }
 }

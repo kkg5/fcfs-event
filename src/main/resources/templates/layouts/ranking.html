@@ -11,7 +11,7 @@
      * 랭킹 테이블을 추가한다.
      * @param {object} map
      */
-    function addRanking(map) {
+    function updateRanking(map) {
       const ranking = document.getElementById('ranking');
       const prevTable = document.getElementById('ranking-table');
 
@@ -24,7 +24,7 @@
 
       for (const k of Object.keys(map)) {
         const element = document.createElement('div');
-        element.innerText = `${k}등 ${map[k]}`;
+        element.innerText = `${map[k]}등 ${k}`;
         div.appendChild(element);
       }
 

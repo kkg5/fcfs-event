@@ -13,21 +13,27 @@
       <h1 id="heading1" class="m-5">Hello</h1>
       <button type="button"
               class="btn btn-outline-secondary btn-lg px-lg-5"
-              onclick="getRank()">클릭</button>
+              onclick="postRank()">클릭</button>
     </div>
     <th:block th:replace="~{layouts/ranking :: rankingFrag}"></th:block>
     <footer class="mt-auto"></footer>
   </div>
   <script th:src="@{/js/fetch.js}"></script>
   <script>
+    fetchJson('/rest/ranks')
+        .then((response) => {
+          document.getElementById('heading1').innerText = response['rank'];
+          updateRanking(response['map']);
+        });
+
     /**
-     * 순위 조회
+     * 순위 등록
      */
-    function getRank() {
-      fetchJson('/rest/ranks')
+    function postRank() {
+      fetchJson('/rest/ranks', 'post')
           .then((response) => {
             document.getElementById('heading1').innerText = response['rank'];
-            addRanking(response['map']);
+            updateRanking(response['map']);
           });
     }
   </script>
