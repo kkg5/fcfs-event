@@ -9,6 +9,7 @@ class RankScheduler {
     @Scheduled(cron = "0 * * * * *")
     fun resetRank() {
         Singleton.atomicInteger.set(0)
-        Singleton.map.clear()
+        Singleton.rankMap.clear()
+        Singleton.nameMap.clear()
     }
 }

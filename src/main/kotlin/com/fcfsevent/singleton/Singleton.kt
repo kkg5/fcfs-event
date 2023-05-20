@@ -5,5 +5,6 @@ import java.util.concurrent.atomic.AtomicInteger
 
 object Singleton {
     val atomicInteger: AtomicInteger = AtomicInteger()
-    val map = ConcurrentHashMap<String, Int>()
+    val rankMap = ConcurrentHashMap<String, Int>()
+    val nameMap = ConcurrentHashMap<String, String>()
 }

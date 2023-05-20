@@ -1,9 +1,11 @@
 package com.fcfsevent.controller
 
+import com.fcfsevent.dto.PostRankDto
 import com.fcfsevent.dto.ResultDto
 import com.fcfsevent.service.FcfsService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -18,7 +20,7 @@ class FcfsRestController(
     }
 
     @PostMapping("/ranks")
-    fun postRank(): ResultDto {
-        return fcfsService.postRank()
+    fun postRank(@RequestBody postRankDto: PostRankDto): ResultDto {
+        return fcfsService.postRank(postRankDto.name)
     }
 }

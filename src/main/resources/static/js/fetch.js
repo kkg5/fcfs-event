@@ -7,14 +7,26 @@ if (location.hostname === 'localhost') {
 /**
  * Get Json Response
  * @param {string} url
- * @param {string} method
+ * @param {object} option
  * @return {Promise<any>}
  */
-function fetchJson(url, method = 'get') {
-  return fetch(
-      HOST + url,
-      {
-        method: method,
-      },
-  ).then((response) => response.json());
+function getFetchJson(url) {
+  return fetch( HOST + url)
+      .then((response) => response.json());
+}
+
+/**
+ * Post and Get Json Response
+ * @param {string} url
+ * @param {object} body
+ * @return {Promise<any>}
+ */
+function postFetchJson(url, body) {
+  return fetch( HOST + url, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: body,
+  }).then((response) => response.json());
 }
