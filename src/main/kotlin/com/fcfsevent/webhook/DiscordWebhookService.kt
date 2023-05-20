@@ -10,8 +10,8 @@ class DiscordWebhookService(
     private val url: String,
     private val http: HttpUtils
 ) {
-    fun postRequest(message: String) {
-        postRequest(DiscordWebhookDto(message = message))
+    fun postRequest(content: String) {
+        postRequest(DiscordWebhookDto(content = content))
     }
 
     fun postRequest(body: DiscordWebhookDto) {
