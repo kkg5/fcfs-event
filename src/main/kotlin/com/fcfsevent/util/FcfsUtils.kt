@@ -1,5 +1,6 @@
 package com.fcfsevent.util
 
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.web.context.request.RequestContextHolder.currentRequestAttributes
 import org.springframework.web.context.request.ServletRequestAttributes
 
@@ -10,7 +11,7 @@ val headers = listOf(
 )
 
 fun getIp(): String? {
-    val request = (currentRequestAttributes() as ServletRequestAttributes).request
+    val request = getRequest()
     var ip = request.remoteAddr
     headers.forEach {
         if (ip != null && ip.isNotEmpty() && !"unknown".equals(ip, ignoreCase = true) && ip != "127.0.0.1") {
@@ -19,4 +20,20 @@ fun getIp(): String? {
         ip = request.getHeader(it)
     }
     return ip
+}
+
+fun getRequestURI(): String {
+    return getRequest().requestURI
+}
+
+fun getStringOfParamMap(): String {
+    return getRequest().parameterMap.map { "$it.key=$it.value" }.joinToString(", ")
+}
+
+fun getUserAgent(): String? {
+    return getRequest().getHeader("User-Agent")
+}
+
+private fun getRequest(): HttpServletRequest {
+    return (currentRequestAttributes() as ServletRequestAttributes).request
 }

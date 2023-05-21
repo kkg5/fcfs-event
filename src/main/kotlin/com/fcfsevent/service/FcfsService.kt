@@ -16,10 +16,11 @@ class FcfsService(
         val ip = getIp()
         var rank = 0
 
-        if (ip != null && rankMap.contains(ip)) {
+        if (ip != null && rankMap.containsKey(ip)) {
             rank = rankMap[ip]!!
         }
 
+        webhook.debug()
         return ResultDto(rank, getResultMap())
     }
 
@@ -30,9 +31,9 @@ class FcfsService(
             if (!rankMap.containsKey(ip)) {
                 val rank = atomicInteger.addAndGet(1)
                 rankMap[ip] = rank
-                webhook.postRequest("${name}님이 ${rank}등으로 누르셨습니다.\nIP: $ip")
+                webhook.postContent("클릭", """`$name`님이 `${rank}등`으로 누르셨습니다.""")
             } else if (nameMap[ip] != name) {
-                webhook.postRequest("${nameMap[ip]}님이 $name(으)로 이름을 변경하셨습니다.")
+                webhook.postContent("이름 변경", """`${nameMap[ip]}`님이 `$name`(으)로 이름을 변경하셨습니다.""")
             }
 
             if (name.isEmpty()) {
