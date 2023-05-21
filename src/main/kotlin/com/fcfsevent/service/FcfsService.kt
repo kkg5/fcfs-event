@@ -28,19 +28,17 @@ class FcfsService(
         val ip = getIp()
 
         if (ip != null) {
+            val newName = name.ifEmpty { ip.substring(0, 7) }
+
             if (!rankMap.containsKey(ip)) {
                 val rank = atomicInteger.addAndGet(1)
                 rankMap[ip] = rank
-                webhook.postContent("클릭", "`$name`님이 `${rank}등`으로 누르셨습니다.")
-            } else if (nameMap[ip] != name) {
-                webhook.postContent("이름 변경", "`${nameMap[ip]}`님이 `$name`(으)로 이름을 변경하셨습니다.")
+                webhook.postContent("클릭", "`$newName`님이 `${rank}등`으로 누르셨습니다.")
+            } else if (nameMap[ip] != newName) {
+                webhook.postContent("이름 변경", "`${nameMap[ip]}`님이 `$newName`(으)로 이름을 변경하셨습니다.")
             }
 
-            if (name.isEmpty()) {
-                nameMap[ip] = ip.substring(0, 7)
-            } else {
-                nameMap[ip] = name
-            }
+            nameMap[ip] = newName
         }
 
         return ResultDto(rankMap[ip] ?: 0, getResultMap())

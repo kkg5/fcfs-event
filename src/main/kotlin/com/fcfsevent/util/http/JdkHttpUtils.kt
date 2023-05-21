@@ -13,7 +13,7 @@ import java.net.http.HttpResponse
 
 @Component
 class JdkHttpUtils : HttpUtils {
-    val logger = this.logger()
+    val logger = logger()
 
     override fun post(uri: String, body: Any) {
         val json: String = mapper.writeValueAsString(body)
