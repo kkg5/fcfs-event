@@ -39,12 +39,7 @@ class DiscordWebhookService(
             embeds = listOf(
                 Embed(
                     title = "Debug",
-                    fields = listOf(
-                        EmbedField(name = "URI", value = getRequestURI()),
-                        EmbedField(name = "Parameter Map", value = getStringOfParamMap()),
-                        EmbedField(name = "IP", value = getIp().toString()),
-                        EmbedField(name = "User Agent", value = getUserAgent().toString())
-                    )
+                    fields = getCommonField()
                 )
             )
         )
@@ -57,17 +52,24 @@ class DiscordWebhookService(
             embeds = listOf(
                 Embed(
                     title = e.javaClass.canonicalName,
-                    fields = listOf(
-                        EmbedField(name = "URI", value = getRequestURI()),
-                        EmbedField(name = "Parameter Map", value = getStringOfParamMap()),
-                        EmbedField(name = "IP", value = getIp().toString()),
-                        EmbedField(name = "Message", value = e.message.toString()),
-                        EmbedField(name = "User Agent", value = getUserAgent().toString())
+                    fields = getCommonField().plus(
+                        listOf(
+                            EmbedField(name = "Message", value = e.message.toString())
+                        )
                     )
                 )
             )
         )
 
         http.post(errorUrl, body)
+    }
+
+    private fun getCommonField(): List<EmbedField> {
+        return listOf(
+            EmbedField(name = "URI", value = getRequestURI()),
+            EmbedField(name = "Parameter Map", value = getStringOfParamMap()),
+            EmbedField(name = "IP", value = getIp().toString()),
+            EmbedField(name = "User Agent", value = getUserAgent().toString())
+        )
     }
 }
