@@ -1,8 +1,13 @@
 package com.fcfsevent.util
 
+import com.fcfsevent.util.http.HttpUtils
 import jakarta.servlet.http.HttpServletRequest
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.web.context.request.RequestContextHolder.currentRequestAttributes
 import org.springframework.web.context.request.ServletRequestAttributes
+
+fun <T : HttpUtils> T.logger(): Logger = LoggerFactory.getLogger(this::class.java)
 
 val headers = listOf(
     "X-Forwarded-For", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_CLIENT_IP",
